@@ -1,0 +1,54 @@
+{
+  "ran_utc": "2026-08-18T15:35:46.733729Z",
+  "cairo": "2026-08-18T18:35:46.495040+03:00",
+  "session_open": false,
+  "quotes_returned": 239,
+  "error": null,
+  "sample": {
+    "EGAL": {
+      "close": 342,
+      "chg": 0.5852769036204845,
+      "vol": 333718,
+      "open": 340.01,
+      "high": 353,
+      "low": 340.01,
+      "mode": "delayed_streaming_900"
+    },
+    "ADIB": {
+      "close": 54.98,
+      "chg": -0.7581227436823136,
+      "vol": 835449,
+      "open": 55.4,
+      "high": 55.4,
+      "low": 54,
+      "mode": "delayed_streaming_900"
+    },
+    "EFID": {
+      "close": 32.7,
+      "chg": -1.5653220951234077,
+      "vol": 808499,
+      "open": 33.22,
+      "high": 33.89,
+      "low": 32.7,
+      "mode": "delayed_streaming_900"
+    },
+    "JUFO": {
+      "close": 27.15,
+      "chg": -0.14711290915778852,
+      "vol": 853648,
+      "open": 27.19,
+      "high": 27.44,
+      "low": 26.97,
+      "mode": "delayed_streaming_900"
+    },
+    "FAITA": {
+      "close": 0.99,
+      "chg": -0.3021148036253779,
+      "vol": 179641,
+      "open": 0.993,
+      "high": 0.995,
+      "low": 0.989,
+      "mode": "delayed_streaming_900"
+    }
+  }
+}
