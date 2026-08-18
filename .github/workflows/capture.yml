@@ -1,0 +1,43 @@
+name: EGX capture
+
+on:
+  # Every 5 minutes across 07:00-12:59 UTC, Sun-Thu. That window covers EGX
+  # 10:00-14:45 Cairo in both winter (UTC+2) and summer (UTC+3); poll.py gates
+  # on the real Cairo session time, so ticks outside it fetch nothing and commit
+  # nothing. GitHub cron is best-effort and can be delayed a few minutes.
+  schedule:
+    - cron: "*/5 7-12 * * 0-4"
+  # Manual "Run workflow" button — also writes egx-probe.json to confirm the
+  # scanner is reachable from a plain server, any time of day.
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: egx-capture
+  cancel-in-progress: false
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Record prices
+        env:
+          FORCE_PROBE: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
+        run: python poll.py
+      - name: Commit if changed
+        run: |
+          git config user.name "egx-bot"
+          git config user.email "egx-bot@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "capture ${{ github.run_id }}"
+            git push
+          fi
